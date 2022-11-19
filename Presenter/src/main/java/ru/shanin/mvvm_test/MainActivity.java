@@ -23,11 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
         temp = new DataDomainRepositoryImplInArrayList();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     private void initView() {
