@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupView() {
-        //tv.setText(temp.getDataArrayList().toString());
-        tv.setText(temp.dataGetAll().getValue().toString());
+        tv.setText(temp.getDataArrayList().toString());
+        //tv.setText(temp.dataGetAll().getValue().toString());
     }
 }
