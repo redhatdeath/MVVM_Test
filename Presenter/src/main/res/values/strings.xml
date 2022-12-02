@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVVM_Test</string>
+    <string name="add_new_record">Add new record...</string>
 </resources>

@@ -4,33 +4,51 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
-import ru.shanin.data.repositoryImpl.DataDomainRepositoryImplInArrayList;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import ru.shanin.data.generate.DataGenerateRandom;
 
 
 public class Activity_Main extends AppCompatActivity {
     private TextView tv;
-    private DataDomainRepositoryImplInArrayList temp;
+    private FloatingActionButton fab;
+
+
+    private ViewModel_Main viewModel_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initData();
-        initView();
-        setupView();
+        initViewModel();
+        initViewFAB();
+        initViewTV();
     }
 
-    private void initData() {
-        temp = new DataDomainRepositoryImplInArrayList();
+
+    private void initViewFAB() {
+
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(v -> {
+            viewModel_main.addNewData(DataGenerateRandom.newData());
+        });
     }
 
-    private void initView() {
+    private void initViewTV() {
         tv = findViewById(R.id.tv);
+        viewModel_main.getAllData().observe(
+                this,
+                data -> {
+                    tv.setText(data.toString());
+                }
+        );
     }
 
-    private void setupView() {
-        tv.setText(temp.getDataArrayList().toString());
-        //tv.setText(temp.dataGetAll().getValue().toString());
+    private void initViewModel() {
+
+        viewModel_main = new ViewModelProvider(this).get(ViewModel_Main.class);
+
     }
 }

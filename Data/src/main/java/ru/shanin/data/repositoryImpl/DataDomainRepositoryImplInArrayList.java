@@ -18,10 +18,10 @@ public class DataDomainRepositoryImplInArrayList implements DataDomainRepository
     {
         dataLiveData = new MutableLiveData<>();
         dataArrayList = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            dataAddNew(DataGenerateRandom.newData());
-        }
+//
+//        for (int i = 0; i < 10; i++) {
+//            dataAddNew(DataGenerateRandom.newData());
+//        }
     }
 
     private void updateArrayList() {
