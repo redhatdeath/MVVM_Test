@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import ru.shanin.data.repositoryImpl.DataDomainRepositoryImplInArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class Activity_Main extends AppCompatActivity {
     private TextView tv;
     private DataDomainRepositoryImplInArrayList temp;
 

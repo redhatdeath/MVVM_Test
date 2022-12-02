@@ -16,3 +16,4 @@ rootProject.name = "MVVM_Test"
 include ':Presenter'
 include ':Data'
 include ':Domain'
+include ':App'

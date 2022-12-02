@@ -37,6 +37,8 @@ dependencies {
     // Gson
     implementation 'com.google.code.gson:gson:2.10'
     implementation 'org.jetbrains:annotations:15.0'
+    // Local
+    implementation project(path: ':App')
     implementation project(path: ':Data')
     implementation project(path: ':Domain')
 }

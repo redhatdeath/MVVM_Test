@@ -27,7 +27,7 @@ public class DataGenerateRandom {
     }
 
     private static String genFirstName() {
-        return genString(8);
+        return genString(89);
     }
 
     private static String genSecondName() {
