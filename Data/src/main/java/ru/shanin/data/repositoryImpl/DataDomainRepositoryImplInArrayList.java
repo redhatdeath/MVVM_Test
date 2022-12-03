@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
-import ru.shanin.data.generate.DataGenerateRandom;
 import ru.shanin.domain.entity.Data;
 import ru.shanin.domain.entity.comparators.ByFnSn;
 import ru.shanin.domain.repository.DataDomainRepository;
@@ -15,13 +14,9 @@ public class DataDomainRepositoryImplInArrayList implements DataDomainRepository
 
     private static int autoIncrementId = 0;
 
-    {
+    public DataDomainRepositoryImplInArrayList() {
         dataLiveData = new MutableLiveData<>();
         dataArrayList = new ArrayList<>();
-//
-//        for (int i = 0; i < 10; i++) {
-//            dataAddNew(DataGenerateRandom.newData());
-//        }
     }
 
     private void updateArrayList() {
@@ -77,9 +72,5 @@ public class DataDomainRepositoryImplInArrayList implements DataDomainRepository
     @Override
     public MutableLiveData<ArrayList<Data>> dataGetAll() {
         return dataLiveData;
-    }
-
-    public ArrayList<Data> getDataArrayList() {
-        return new ArrayList<>(dataArrayList);
     }
 }
