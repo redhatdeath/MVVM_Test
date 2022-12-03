@@ -27,11 +27,11 @@ public class DataGenerateRandom {
     }
 
     private static String genFirstName() {
-        return genString(89);
+        return genString(48);
     }
 
     private static String genSecondName() {
-        return genString(6);
+        return genString(36);
     }
 
     public static Data newData() {
