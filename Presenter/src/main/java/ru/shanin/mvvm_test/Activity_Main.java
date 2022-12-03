@@ -1,25 +1,18 @@
 package ru.shanin.mvvm_test;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-
-import ru.shanin.data.generate.DataGenerateRandom;
-import ru.shanin.domain.entity.Data;
-
 
 public class Activity_Main extends AppCompatActivity {
-    private TextView tv;
-    private FloatingActionButton fab;
-
-
     private ViewModel_Main viewModel_main;
 
     @Override
@@ -27,36 +20,41 @@ public class Activity_Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViewModel();
-        initViewFAB();
-        initViewTV();
+        setupView();
     }
 
-
-    private void initViewFAB() {
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(
-                v -> {
-                    viewModel_main.addNewData(
-                            DataGenerateRandom.newData()
-                    );
-                }
-        );
-    }
-
-    private void initViewTV() {
-        tv = findViewById(R.id.tv);
-        viewModel_main.getAllData().observe(
-                this,
-                new Observer<ArrayList<Data>>() {
-                    @Override
-                    public void onChanged(ArrayList<Data> data) {
-                        tv.setText(data.toString());
-                    }
-                }
-        );
-    }
 
     private void initViewModel() {
         viewModel_main = new ViewModelProvider(this).get(ViewModel_Main.class);
+    }
+
+    private void setupView() {
+        new FloatingActionButtonHandler(this, R.id.fab);
+        new TextViewHandler(this, this, R.id.tv);
+    }
+
+    private final class FloatingActionButtonHandler implements View.OnClickListener {
+
+        public FloatingActionButtonHandler(Activity activity, int fabId) {
+            FloatingActionButton fab = activity.findViewById(fabId);
+            fab.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            viewModel_main.addNewData();
+        }
+    }
+
+    private final class TextViewHandler {
+        private final TextView tv;
+
+        public TextViewHandler(Activity activity, LifecycleOwner owner, int tvId) {
+            tv = activity.findViewById(tvId);
+            viewModel_main.getAllData().observe(
+                    owner,
+                    data -> tv.setText(data.toString())
+            );
+        }
     }
 }
